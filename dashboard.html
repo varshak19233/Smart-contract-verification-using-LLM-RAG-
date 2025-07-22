@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartScan: Smart Contract Security Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">SmartScan</div>
+            <nav>
+                <ul>
+                    <li><a href="#overview" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard Overview</a></li>
+                    <li><a href="#vulnerabilities"><i class="fas fa-bug"></i> Vulnerability Details</a></li>
+                    <li><a href="#contract-compare"><i class="fas fa-code-compare"></i> Contract Comparison</a></li>
+                    <li><a href="#llm-accuracy"><i class="fas fa-robot"></i> LLM Accuracy</a></li>
+                    <li><a href="#integrations"><i class="fas fa-puzzle-piece"></i> Integrations</a></li>
+                    <li><a href="#training-data"><i class="fas fa-database"></i> Training Data</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <h1>Smart Contract Security Dashboard</h1>
+                <div class="user-profile">
+                    <i class="fas fa-user-circle"></i> Developer User
+                </div>
+            </header>
+
+            <section id="overview" class="dashboard-section">
+                <h2>Dashboard Overview</h2>
+                <div class="overview-grid">
+                    <div class="card security-score">
+                        <h3>Security Health Score</h3>
+                        <div class="score-value">92<span class="score-unit">%</span></div>
+                        <p class="score-status">Excellent</p>
+                        <div class="score-bar">
+                            <div class="fill" style="width: 92%;"></div>
+                        </div>
+                    </div>
+                    <div class="card vulnerability-summary">
+                        <h3>Vulnerabilities by Severity</h3>
+                        <div class="chart-placeholder">
+                            <p>Chart: Vulnerabilities by Severity Bar Chart</p>
+                            <div class="legend">
+                                <span class="critical-dot"></span> Critical (5)
+                                <br>
+                                <span class="high-dot"></span> High (8)
+                                <br>
+                                <span class="medium-dot"></span> Medium (3)
+                                <br>
+                                <span class="low-dot"></span> Low (1)
+                                <br>
+                                <span class="info-dot"></span> Informational (2)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card vulnerability-trend">
+                        <h3>Vulnerability Trend</h3>
+                        <div class="chart-placeholder">
+                            <p>Chart: New vs. Resolved Over Time (Line Chart)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="upload-section">
+                    <h3>Start a New Scan</h3>
+                    <div class="scan-options-grid">
+                        <div class="scan-option-card">
+                            <i class="fas fa-file-upload"></i>
+                            <h4>Upload Smart Contract Files</h4>
+                            <p>Upload.sol files for a quick scan.</p>
+                            <input type="file" id="contractUpload" multiple accept=".sol" style="display: none;">
+                            <label for="contractUpload" class="upload-button">Choose Files</label>
+                            <span id="file-count">No files chosen</span>
+                            <button class="scan-button primary-button">Initiate File Scan</button>
+                        </div>
+                        <div class="scan-option-card">
+                            <i class="fab fa-github"></i>
+                            <h4>Scan Git Repository</h4>
+                            <p>Connect your GitHub, GitLab, or BitBucket repo.</p>
+                            <input type="text" placeholder="Repository URL" class="repo-input">
+                            <div class="scan-options">
+                                <select class="blockchain-select">
+                                    <option value="">Select Blockchain</option>
+                                    <option value="ethereum">Ethereum</option>
+                                    <option value="polygon">Polygon</option>
+                                    <option value="avalanche">Avalanche</option>
+                                </select>
+                                <label class="checkbox-container">
+                                    <input type="checkbox"> Proxy Contract?
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <button class="scan-button primary-button">Scan Repository</button>
+                        </div>
+                        <div class="scan-option-card">
+                            <i class="fas fa-link"></i>
+                            <h4>Scan Deployed Contract</h4>
+                            <p>Analyze contracts already on-chain.</p>
+                            <input type="text" placeholder="Contract Address" class="address-input">
+                            <select class="blockchain-select">
+                                <option value="">Select Blockchain</option>
+                                <option value="ethereum">Ethereum</option>
+                                <option value="polygon">Polygon</option>
+                                <option value="avalanche">Avalanche</option>
+                            </select>
+                            <button class="scan-button primary-button">Scan Deployed</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-scans-section">
+                    <h3>Recent Scans</h3>
+                    <div class="recent-scans-list">
+                        <div class="scan-item">
+                            <span class="scan-name">Contract2.sol</span>
+                            <span class="scan-date">July 10, 2025</span>
+                            <span class="scan-summary">5 Critical, 1 High, 1 Medium</span>
+                            <button class="view-report-button">View Report</button>
+                        </div>
+                        <div class="scan-item">
+                            <span class="scan-name">Contract1.sol</span>
+                            <span class="scan-date">July 9, 2025</span>
+                            <span class="scan-summary">2 High</span>
+                            <button class="view-report-button">View Report</button>
+                        </div>
+                        <div class="scan-item">
+                            <span class="scan-name">MyDeFiProtocol.sol</span>
+                            <span class="scan-date">July 8, 2025</span>
+                            <span class="scan-summary">1 Critical, 3 High, 2 Medium</span>
+                            <button class="view-report-button">View Report</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="training-data" class="dashboard-section">
+                <h2>Training Data: Smart Contract + Slither IDs</h2>
+                <div style="margin-bottom: 10px;">
+                    <input type="text" id="searchBox" placeholder="Search by address..." style="padding: 5px; width: 250px;">
+                    <select id="chainFilter" style="padding: 5px;">
+                        <option value="">All Chains</option>
+                        <option value="0x00">0x00 - Ethereum Mainnet</option>
+                        <option value="0x1">0x1 - Optimism / Base</option>
+                        <option value="0x5">0x5 - Goerli</option>
+                    </select>
+                    <button id="exportBtn" class="primary-button">Export CSV</button>
+                </div>
+
+                <table id="trainingTable" border="1" cellpadding="5">
+                    <thead>
+                        <tr>
+                            <th data-key="address" style="cursor:pointer">Smart Contract Address</th>
+                            <th data-key="slither_ids" style="cursor:pointer">Slither IDs</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div id="entryCount" style="margin-top:5px; font-weight:bold;"></div>
+                <div id="pagination" style="margin-top: 10px;"></div>
+            </section>
+
+            <section id="vulnerabilities" class="dashboard-section">
+                <h2>Vulnerability Details</h2>
+                <div class="filters-container">
+                    <input type="text" placeholder="Search vulnerabilities..." class="search-input">
+                    <select class="filter-select">
+                        <option value="">Filter by Severity</option>
+                        <option value="critical">Critical</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                        <option value="info">Informational</option>
+                    </select>
+                    <select class="filter-select">
+                        <option value="">Filter by Type</option>
+                        <option value="Access Control">Access Control</option>
+                        <option value="Arithmetic">Arithmetic</option>
+                        <option value="Bad Randomness">Bad Randomness</option>
+                        <option value="Denial of Service">Denial of Service</option>
+                        <option value="Front Running">Front Running</option>
+                        <option value="Reentrancy">Reentrancy</option>
+                        <option value="Short Addresses">Short Addresses</option>
+                        <option value="Time Manipulation">Time Manipulation</option>
+                        <option value="Unchecked Low-Level Calls">Unchecked Low-Level Calls</option>
+                    </select>
+                    <select class="filter-select">
+                        <option value="">Detected By</option>
+                        <option value="Gemini">Gemini</option>
+                        <option value="Ollama">Ollama</option>
+                        <option value="Open-ai">Open-ai </option>
+
+                    </select>
+                    <button class="apply-filters-button primary-button">Apply Filters</button>
+                    <button class="clear-filters-button secondary-button">Clear Filters</button>
+                </div>
+                <div class="applied-filters">
+                </div>
+                <div class="vulnerability-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Line Number</th>
+                                <th>CWE</th>
+                                <th>Bug-Type</th>
+                                <th>CVE ID</th>
+                                <th>Snippet</th>
+                                <th>Severity</th>
+                                <th>Description</th>
+                                <th>Slither Nums</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Vulnerability rows here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="contract-compare" class="dashboard-section">
+                <h3>Comparison Summary</h3>
+                <div class="overview-grid">
+                    <div id="contractA_summary" class="card">
+                        <h4>Contract A Summary</h4>
+                        <p>Total Vulnerabilities: <span id="totalVulnsA"></span></p>
+                        <p>Critical: <span id="criticalA"></span>, High: <span id="highA"></span></p>
+                        <p>Security Score: <span id="scoreA"></span>%</p>
+                    </div>
+                    <div id="contractB_summary" class="card">
+                        <h4>Contract B Summary</h4>
+                        <p>Total Vulnerabilities: <span id="totalVulnsB"></span></p>
+                        <p>Critical: <span id="criticalB"></span>, High: <span id="highB"></span>, Medium: <span id="mediumB"></span></p>
+                        <p>Security Score: <span id="scoreB"></span>%</p>
+                    </div>
+                </div>
+
+                <h3>Detailed Comparison</h3>
+                <div class="side-by-side-tables">
+                    <div class="contract-table">
+                        <h4>Vulnerabilities in Contract A</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Severity</th>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vulnTableA">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="contract-table">
+                        <h4>Vulnerabilities in Contract B</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Severity</th>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vulnTableB">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="llm-accuracy" class="dashboard-section">
+                <h2>LLM Accuracy Evaluation</h2>
+                <div class="llm-comparison-grid">
+                    <div class="card llm-metrics">
+                        <h3>Comparative LLM Performance Metrics</h3>
+                        <div class="chart-placeholder">
+                            <p>Chart: Accuracy, Precision, Recall, F1-Score (Grouped Bar Chart)</p>
+                            <div class="llm-selector">
+                                <label>
+                                    <input type="checkbox" checked> LLM 1</label>
+                                <label>
+                                    <input type="checkbox" checked> LLM 2</label>
+                                <label>
+                                    <input type="checkbox" checked> LLM 3</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card llm-confusion">
+                        <h3>LLM 1 Error Distribution</h3>
+                        <div class="chart-placeholder">
+                            <p>Chart: Confusion Matrix (TP, FP, TN, FN)</p>
+                            <div class="confusion-matrix-data">
+                                <p>TP: 800 | FP: 50</p>
+                                <p>FN: 20 | TN: 930</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card llm-confusion">
+                        <h3>LLM 2 Error Distribution</h3>
+                        <div class="chart-placeholder">
+                            <p>Chart: Confusion Matrix (TP, FP, TN, FN)</p>
+                            <div class="confusion-matrix-data">
+                                <p>TP: 780 | FP: 30</p>
+                                <p>FN: 40 | TN: 950</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card llm-confusion">
+                        <h3>LLM 3 Error Distribution</h3>
+                        <div class="chart-placeholder">
+                            <p>Chart: Confusion Matrix (TP, FP, TN, FN)</p>
+                            <div class="confusion-matrix-data">
+                                <p>TP: 820 | FP: 70</p>
+                                <p>FN: 10 | TN: 910</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card llm-overlap">
+                        <h3>Vulnerability Detection Overlap</h3>
+                        <div class="chart-placeholder">
+                            <p>Chart: UpSet Plot (Vulnerability Overlap between LLMs)</p>
+                            <div class="overlap-legend">
+                                <p>Shows unique and shared detections.</p>
+                                <p>e.g., "50 vulnerabilities detected by all 3 LLMs"</p>
+                                <p>"10 vulnerabilities unique to LLM 1"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="integrations" class="dashboard-section">
+                <h2>Integrations & Workflow</h2>
+                <div class="integration-list">
+                    <div class="integration-item">
+                        <i class="fab fa-github"></i>
+                        <h3>GitHub</h3>
+                        <p class="status connected">Connected</p>
+                        <button class="secondary-button">Configure</button>
+                    </div>
+                    <div class="integration-item">
+                        <i class="fab fa-slack"></i>
+                        <h3>Slack</h3>
+                        <p class="status not-connected">Not Connected</p>
+                        <button class="primary-button">Connect</button>
+                    </div>
+                    <div class="integration-item">
+                        <i class="fab fa-vs-code"></i>
+                        <h3>VS Code Extension</h3>
+                        <p class="status connected">Installed</p>
+                        <button class="secondary-button">Manage</button>
+                    </div>
+                    <div class="integration-item">
+                        <i class="fas fa-code"></i>
+                        <h3>Remix IDE Plugin</h3>
+                        <p class="status not-connected">Not Installed</p>
+                        <button class="primary-button">Install</button>
+                    </div>
+                    <div class="integration-item">
+                        <i class="fas fa-bell"></i>
+                        <h3>Automated Alerts</h3>
+                        <p>Real-time notifications for critical issues.</p>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <script>
+const PAGE_SIZE = 10;
+let trainingData = [];
+let filteredData = [];
+let currentPage = 1;
+let sortKey = 'address';
+let sortAsc = true;
+let searchTerm = '';
+let chainFilterValue = '';
+
+async function fetchTrainingData() {
+  const response = await fetch('training_data.json');
+  let data = await response.json();
+  // Add dummy addresses for demo (replace with real addresses if available)
+  data = data.map((item, i) => ({
+    address: `0x${(i+1).toString(16).padStart(40, '0')}`,
+    slither_ids: item.slither_ids
+  }));
+  return data;
+}
+
+function highlight(text, term) {
+  if (!term) return text;
+  const re = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'ig');
+  return text.replace(re, '<span class="highlight">$1</span>');
+}
+
+function renderTable() {
+  const tbody = document.querySelector("#trainingTable tbody");
+  tbody.innerHTML = "";
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const end = start + PAGE_SIZE;
+  const pageData = filteredData.slice(start, end);
+
+  pageData.forEach(item => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>
+        <span class="address-cell">${highlight(item.address, searchTerm)}</span>
+        <button class="copy-btn" data-address="${item.address}" title="Copy Address">📋</button>
+      </td>
+      <td>${item.slither_ids}</td>
+    `;
+    tbody.appendChild(row);
+  });
+
+  // Copy button logic
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.onclick = function() {
+      navigator.clipboard.writeText(this.dataset.address);
+      this.textContent = "✅";
+      setTimeout(() => (this.textContent = "📋"), 1000);
+    };
+  });
+
+  // Update count
+  document.getElementById('entryCount').textContent =
+    `Showing ${filteredData.length} of ${trainingData.length} entries`;
+}
+
+function renderPagination() {
+  const totalPages = Math.ceil(filteredData.length / PAGE_SIZE) || 1;
+  const pagination = document.getElementById('pagination');
+  pagination.innerHTML = `
+    <button id="prevPage" ${currentPage === 1 ? "disabled" : ""}>Prev</button>
+    Page ${currentPage} of ${totalPages}
+    <button id="nextPage" ${currentPage === totalPages ? "disabled" : ""}>Next</button>
+  `;
+  document.getElementById('prevPage').onclick = () => { if (currentPage > 1) { currentPage--; renderTable(); renderPagination(); }};
+  document.getElementById('nextPage').onclick = () => { if (currentPage < totalPages) { currentPage++; renderTable(); renderPagination(); }};
+}
+
+function sortData(key) {
+  if (sortKey === key) sortAsc = !sortAsc;
+  else { sortKey = key; sortAsc = true; }
+  filteredData.sort((a, b) => {
+    if (a[key] < b[key]) return sortAsc ? -1 : 1;
+    if (a[key] > b[key]) return sortAsc ? 1 : -1;
+    return 0;
+  });
+  currentPage = 1;
+  renderTable();
+  renderPagination();
+  updateSortIndicators();
+}
+
+function updateSortIndicators() {
+  document.querySelectorAll('#trainingTable th').forEach(th => {
+    th.classList.remove('sorted-asc', 'sorted-desc');
+    if (th.dataset.key === sortKey) {
+      th.classList.add(sortAsc ? 'sorted-asc' : 'sorted-desc');
+    }
+  });
+}
+
+function filterData() {
+  filteredData = trainingData.filter(entry => {
+    const matchesSearch = entry.address.toLowerCase().includes(searchTerm);
+    const matchesChain = !chainFilterValue || entry.address.startsWith(chainFilterValue);
+    return matchesSearch && matchesChain;
+  });
+  sortData(sortKey);
+}
+
+function setupFilters() {
+  const searchBox = document.getElementById("searchBox");
+  const chainFilter = document.getElementById("chainFilter");
+  searchBox.addEventListener("input", () => {
+    searchTerm = searchBox.value.trim().toLowerCase();
+    currentPage = 1;
+    filterData();
+  });
+  chainFilter.addEventListener("change", () => {
+    chainFilterValue = chainFilter.value;
+    currentPage = 1;
+    filterData();
+  });
+}
+
+function setupExport() {
+  document.getElementById("exportBtn").addEventListener("click", () => {
+    const rows = [["Smart Contract Address", "Slither IDs"], ...filteredData.map(item => [item.address, item.slither_ids])];
+    const csvContent = rows.map(e => e.join(",")).join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "training_data.csv";
+    link.click();
+  });
+}
+
+function setupSorting() {
+  document.querySelectorAll('#trainingTable th').forEach(th => {
+    if (th.dataset.key) {
+      th.style.cursor = "pointer";
+      th.onclick = () => sortData(th.dataset.key);
+    }
+  });
+}
+
+fetchTrainingData().then(data => {
+  trainingData = data;
+  filteredData = [...trainingData];
+  setupFilters();
+  setupExport();
+  setupSorting();
+  filterData();
+});
+
+// Add highlight style
+const style = document.createElement('style');
+style.textContent = `
+  .highlight { background: yellow; }
+  .copy-btn { margin-left: 8px; cursor: pointer; border: none; background: none; font-size: 1em; }
+  th.sorted-asc::after { content: " ▲"; }
+  th.sorted-desc::after { content: " ▼"; }
+`;
+document.head.appendChild(style);
+                    </script>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
